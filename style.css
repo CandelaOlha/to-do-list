@@ -104,15 +104,15 @@ main {
   border: 1px solid #4663f6;
   border-radius: 20px;
   display: flex;
-  height: 30px;
+  height: 25px;
   justify-content: center;
   margin-right: 10px;
-  width: 30px;
+  width: 25px;
 }
 
 .completed-task i {
   color: #4663f6;
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0;
 }
 
@@ -124,6 +124,17 @@ main {
 
 .task-description {
   color: #0b132b;
+  line-height: 1.6;
+}
+
+/* Classes for JS */
+
+.full-opacity {
+  opacity: 1;
+}
+
+.checked-task {
+  text-decoration: line-through;
 }
 
 .actions {
@@ -133,6 +144,7 @@ main {
 
 .actions i {
   color: #ef767a;
+  cursor: pointer;
   font-size: 20px;
 }
 

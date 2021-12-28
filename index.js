@@ -60,18 +60,18 @@ taskForm.onsubmit = e => {
 }
 
 const displayTasksInHTML = arr => {
-    const tasksInHTML = arr.reduce((acc, curr) => {
+    const tasksInHTML = arr.reduce((acc, curr, index) => {
         return acc + `
         <div class="task-container">
             <div class="task-item">
                 <div class="completed-task">
-                    <i class="fas fa-check"></i>
+                    <i class="fas fa-check icon"></i>
                 </div>
                 <p class="task-description">${curr}</p>
             </div>
             <div class="actions">
                 <i class="far fa-edit"></i>
-                <i class="far fa-trash-alt"></i>
+                <i class="far fa-trash-alt delete-icon" id="delete-item-${index}"></i>
             </div>
         </div>
         `
@@ -81,6 +81,25 @@ const displayTasksInHTML = arr => {
 
     if (arr.length > 0) {
         whiteSpace.style.display = "none";
+    }
+
+    deleteTask();
+}
+
+const deleteTask = () => {
+    const deleteIcons = document.querySelectorAll(".delete-icon");
+
+    for (let i = 0; i < deleteIcons.length; i++) {
+        deleteIcons[i].onclick = () => {
+            let tasks = getTasks();
+            const deleteItemID = Number(deleteIcons[i].id.slice(12));
+            const filteredArray = tasks.filter((curr, index) => {
+                return index !== deleteItemID;
+            })
+            tasks = filteredArray;
+            saveInLocalStorage(tasks, "tasks");
+            displayTasksInHTML(getTasks());
+        } 
     }
 }
 
