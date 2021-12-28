@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
 }
 
 main {
@@ -52,7 +53,7 @@ main {
   font-size: 16px;
 }
 
-.task-submit {
+.submit-task {
   background-color: #4663f6;
   border: 1px solid #4663f6;
   border-radius: 0 100px 100px 0;
@@ -74,12 +75,69 @@ main {
 }
 
 .white-space-img {
-  max-width: 330px;
   margin-bottom: 60px;
+  max-width: 330px;
 }
 
 .white-space-text {
   color: #0b132b;
+}
+
+/* Tasks */
+
+.task-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.task-item {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  transition: 0.2s;
+}
+
+.completed-task {
+  align-items: center;
+  border: 1px solid #4663f6;
+  border-radius: 20px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  margin-right: 10px;
+  width: 30px;
+}
+
+.completed-task i {
+  color: #4663f6;
+  font-size: 16px;
+  opacity: 0;
+}
+
+/* Task item on hover */
+
+.task-item:hover i {
+  opacity: 1;
+}
+
+.task-description {
+  color: #0b132b;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+}
+
+.actions i {
+  color: #ef767a;
+  font-size: 20px;
+}
+
+.far.fa-edit {
+  margin-right: 10px;
 }
 
 /* Footer styles */
