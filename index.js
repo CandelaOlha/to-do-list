@@ -1,3 +1,6 @@
+const taskForm = document.querySelector(".task-form");
+const taskInput = document.querySelector(".task-input");
+
 // JSON auxiliary functions
 
 const convertToJSON = (object) => {
@@ -23,4 +26,32 @@ const getFromLocalStorage = (key) => {
     const JavascriptObject = convertFromJSON(savedObject);
 
     return JavascriptObject;
+}
+
+const tasks = [];
+
+const getTasks = () => {
+    const tasksInLocalStorage = getFromLocalStorage("tasks");
+
+    if (tasksInLocalStorage !== null) {
+        return tasksInLocalStorage;
+    }
+    else {
+        return tasks;
+    }
+}
+
+// Add task
+
+taskForm.onsubmit = e => {
+    e.preventDefault();
+
+    const tasks = getTasks();
+    const newTask = taskInput.value;
+
+    tasks.push(newTask);
+    
+    taskInput.value = "";
+
+    saveInLocalStorage(tasks, "tasks");
 }

@@ -52,7 +52,7 @@ main {
   font-size: 16px;
 }
 
-.task-submit {
+.submit-task {
   background-color: #4663f6;
   border: 1px solid #4663f6;
   border-radius: 0 100px 100px 0;
@@ -74,8 +74,8 @@ main {
 }
 
 .white-space-img {
-  max-width: 330px;
   margin-bottom: 60px;
+  max-width: 330px;
 }
 
 .white-space-text {
