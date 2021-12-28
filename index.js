@@ -1,6 +1,7 @@
 const taskForm = document.querySelector(".task-form");
 const taskInput = document.querySelector(".task-input");
 const tasksContainer = document.querySelector(".tasks-container");
+const whiteSpace = document.querySelector(".white-space");
 
 // JSON auxiliary functions
 
@@ -77,4 +78,10 @@ const displayTasksInHTML = arr => {
     }, "")
 
     tasksContainer.innerHTML = tasksInHTML;
+
+    if (arr.length > 0) {
+        whiteSpace.style.display = "none";
+    }
 }
+
+displayTasksInHTML(getTasks());

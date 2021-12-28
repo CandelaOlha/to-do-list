@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
 }
 
 main {
@@ -93,7 +94,9 @@ main {
 
 .task-item {
   align-items: center;
+  cursor: pointer;
   display: flex;
+  transition: 0.2s;
 }
 
 .completed-task {
@@ -111,6 +114,12 @@ main {
   color: #4663f6;
   font-size: 16px;
   opacity: 0;
+}
+
+/* Task item on hover */
+
+.task-item:hover i {
+  opacity: 1;
 }
 
 .task-description {
