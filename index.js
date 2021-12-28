@@ -1,5 +1,6 @@
 const taskForm = document.querySelector(".task-form");
 const taskInput = document.querySelector(".task-input");
+const tasksContainer = document.querySelector(".tasks-container");
 
 // JSON auxiliary functions
 
@@ -54,4 +55,26 @@ taskForm.onsubmit = e => {
     taskInput.value = "";
 
     saveInLocalStorage(tasks, "tasks");
+    displayTasksInHTML(tasks);
+}
+
+const displayTasksInHTML = arr => {
+    const tasksInHTML = arr.reduce((acc, curr) => {
+        return acc + `
+        <div class="task-container">
+            <div class="task-item">
+                <div class="completed-task">
+                    <i class="fas fa-check"></i>
+                </div>
+                <p class="task-description">${curr}</p>
+            </div>
+            <div class="actions">
+                <i class="far fa-edit"></i>
+                <i class="far fa-trash-alt"></i>
+            </div>
+        </div>
+        `
+    }, "")
+
+    tasksContainer.innerHTML = tasksInHTML;
 }
