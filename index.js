@@ -43,13 +43,27 @@ const getTasks = () => {
     }
 }
 
+const getCompletedTasks = () => {
+    const completedTasksInLocalStorage = getFromLocalStorage("completed_tasks");
+
+    if (completedTasksInLocalStorage !== null) {
+        return completedTasksInLocalStorage;
+    }
+    else {
+        return completedTasks;
+    }
+}
+
 // Add task
 
 taskForm.onsubmit = e => {
     e.preventDefault();
 
     const tasks = getTasks();
-    const newTask = taskInput.value;
+    const newTask = {
+        description: taskInput.value, 
+        status: "uncompleted",
+    }
 
     tasks.push(newTask);
     
@@ -59,19 +73,25 @@ taskForm.onsubmit = e => {
     displayTasksInHTML(tasks);
 }
 
+const getTaskStatus = (task) => {
+    if (task.status === "completed") {
+        return `text-decoration:line-through;`
+    }
+}
+
 const displayTasksInHTML = arr => {
     const tasksInHTML = arr.reduce((acc, curr, index) => {
         return acc + `
         <div class="task-container">
-            <div class="task-item">
+            <div class="task-item" id="complete-task-${index}">
                 <div class="completed-task">
                     <i class="fas fa-check icon"></i>
                 </div>
-                <p class="task-description">${curr}</p>
+                <p class="task-description" style=${getTaskStatus(curr)}>${curr.description}</p>
             </div>
             <div class="actions">
                 <i class="far fa-edit"></i>
-                <i class="far fa-trash-alt delete-icon" id="delete-item-${index}"></i>
+                <i class="far fa-trash-alt delete-icon" id="delete-task-${index}"></i>
             </div>
         </div>
         `
@@ -84,6 +104,7 @@ const displayTasksInHTML = arr => {
     }
 
     deleteTask();
+    markTaskAsCompleted();
 }
 
 const deleteTask = () => {
@@ -92,14 +113,28 @@ const deleteTask = () => {
     for (let i = 0; i < deleteIcons.length; i++) {
         deleteIcons[i].onclick = () => {
             let tasks = getTasks();
-            const deleteItemID = Number(deleteIcons[i].id.slice(12));
+            const taskID = Number(deleteIcons[i].id.slice(12));
             const filteredArray = tasks.filter((curr, index) => {
-                return index !== deleteItemID;
+                return index !== taskID;
             })
             tasks = filteredArray;
             saveInLocalStorage(tasks, "tasks");
             displayTasksInHTML(getTasks());
         } 
+    }
+}
+
+const markTaskAsCompleted = () => {
+    const items = document.querySelectorAll(".task-item");
+
+    for (let i = 0; i < items.length; i++) {
+        items[i].onclick = () => {
+            let tasks = getTasks();
+            const taskID = Number(items[i].id.slice(14));
+            tasks[taskID].status = "completed";
+            saveInLocalStorage(tasks, "tasks");
+            displayTasksInHTML(getTasks());
+        }
     }
 }
 
