@@ -73,11 +73,20 @@ taskForm.onsubmit = e => {
     displayTasksInHTML(tasks);
 }
 
-const getTaskStatus = (task) => {
+const addCheckIcon = (task) => {
+    if (task.status === "completed") {
+        return `opacity:1;`
+    }
+}
+
+const getTaskStatus = (task) => { 
     if (task.status === "completed") {
         return `text-decoration:line-through;`
     }
 }
+
+/* Note: while I think it's better not to use the style attribute within an HTML tag, 
+this is the best way I found to add styles to task items based on a condition so far. */
 
 const displayTasksInHTML = arr => {
     const tasksInHTML = arr.reduce((acc, curr, index) => {
@@ -85,7 +94,7 @@ const displayTasksInHTML = arr => {
         <div class="task-container">
             <div class="task-item" id="complete-task-${index}">
                 <div class="completed-task">
-                    <i class="fas fa-check icon"></i>
+                    <i class="fas fa-check icon" style=${addCheckIcon(curr)}></i>
                 </div>
                 <p class="task-description" style=${getTaskStatus(curr)}>${curr.description}</p>
             </div>
@@ -131,9 +140,18 @@ const markTaskAsCompleted = () => {
         items[i].onclick = () => {
             let tasks = getTasks();
             const taskID = Number(items[i].id.slice(14));
-            tasks[taskID].status = "completed";
-            saveInLocalStorage(tasks, "tasks");
-            displayTasksInHTML(getTasks());
+            console.log(tasks[taskID].status);
+
+            if (tasks[taskID].status === "uncompleted") {
+                tasks[taskID].status = "completed";
+                saveInLocalStorage(tasks, "tasks");
+                displayTasksInHTML(getTasks());
+            }
+            else if (tasks[taskID].status === "completed") {
+                tasks[taskID].status = "uncompleted";
+                saveInLocalStorage(tasks, "tasks");
+                displayTasksInHTML(getTasks());
+            }
         }
     }
 }

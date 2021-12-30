@@ -116,25 +116,9 @@ main {
   opacity: 0;
 }
 
-/* Task item on hover */
-
-.task-item:hover i {
-  opacity: 1;
-}
-
 .task-description {
   color: #0b132b;
   line-height: 1.6;
-}
-
-/* Classes for JS */
-
-.full-opacity {
-  opacity: 1;
-}
-
-.checked-task {
-  text-decoration: line-through;
 }
 
 .actions {
