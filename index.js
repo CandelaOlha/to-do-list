@@ -43,17 +43,6 @@ const getTasks = () => {
     }
 }
 
-const getCompletedTasks = () => {
-    const completedTasksInLocalStorage = getFromLocalStorage("completed_tasks");
-
-    if (completedTasksInLocalStorage !== null) {
-        return completedTasksInLocalStorage;
-    }
-    else {
-        return completedTasks;
-    }
-}
-
 // Add task
 
 taskForm.onsubmit = e => {
@@ -140,7 +129,6 @@ const markTaskAsCompleted = () => {
         items[i].onclick = () => {
             let tasks = getTasks();
             const taskID = Number(items[i].id.slice(14));
-            console.log(tasks[taskID].status);
 
             if (tasks[taskID].status === "uncompleted") {
                 tasks[taskID].status = "completed";
