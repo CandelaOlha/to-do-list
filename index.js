@@ -5,13 +5,13 @@ const whiteSpace = document.querySelector(".white-space");
 
 // JSON auxiliary functions
 
-const convertToJSON = (object) => {
+const convertToJSON = object => {
     const objectConvertedToJSON = JSON.stringify(object);
 
     return objectConvertedToJSON;
 }
 
-const convertFromJSON = (JSONObject) => {
+const convertFromJSON = JSONObject => {
     const JSONConvertedToObject = JSON.parse(JSONObject);
 
     return JSONConvertedToObject;
@@ -23,7 +23,7 @@ const saveInLocalStorage = (object, string) => {
     localStorage.setItem(string, objectConvertedToJSON);
 }
 
-const getFromLocalStorage = (key) => {
+const getFromLocalStorage = key => {
     const savedObject = localStorage.getItem(key);
     const JavascriptObject = convertFromJSON(savedObject);
 
@@ -62,20 +62,20 @@ taskForm.onsubmit = e => {
     displayTasksInHTML(tasks);
 }
 
-const addCheckIcon = (task) => {
+const addCheckIcon = task => {
     if (task.status === "completed") {
         return `opacity:1;`
     }
 }
 
-const getTaskStatus = (task) => { 
+const getTaskStatus = task => { 
     if (task.status === "completed") {
         return `text-decoration:line-through;`
     }
 }
 
 /* Note: while I think it's better not to use the style attribute within an HTML tag, 
-this is the best way I found to add styles to task items based on a condition so far. */
+it is the best way I found to add styles to task items based on a condition so far. */
 
 const displayTasksInHTML = arr => {
     const tasksInHTML = arr.reduce((acc, curr, index) => {
@@ -130,7 +130,6 @@ const displayEditMode = () => {
             const taskID = Number(editIcons[i].id.slice(10));
             taskInputs[taskID].classList.toggle("edit-mode");
         }
-        
     }
 }
 
