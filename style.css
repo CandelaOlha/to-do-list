@@ -99,26 +99,42 @@ main {
   transition: 0.2s;
 }
 
-.completed-task {
+.icon-container {
   align-items: center;
   border: 1px solid #4663f6;
   border-radius: 20px;
   display: flex;
   height: 25px;
   justify-content: center;
-  margin-right: 10px;
+  margin-right: 5px;
   width: 25px;
 }
 
-.completed-task i {
+.icon-container i {
   color: #4663f6;
   font-size: 14px;
   opacity: 0;
 }
 
 .task-description {
+  border: none;
+  border-bottom: 1px solid transparent;
   color: #0b132b;
+  font-size: 16px;
   line-height: 1.6;
+  padding: 10px;
+}
+
+.task-description:focus {
+  border-bottom: 1px solid #706c6166;
+  outline: none;
+}
+
+/* Style displayed when edit mode is on */
+
+.edit-mode {
+  border-bottom: 1px solid #706c6166;
+  outline: none;
 }
 
 .actions {

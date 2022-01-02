@@ -81,14 +81,14 @@ const displayTasksInHTML = arr => {
     const tasksInHTML = arr.reduce((acc, curr, index) => {
         return acc + `
         <div class="task-container">
-            <div class="task-item" id="complete-task-${index}">
-                <div class="completed-task">
+            <div class="task-item">
+                <div class="icon-container" id="complete-task-${index}">
                     <i class="fas fa-check icon" style=${addCheckIcon(curr)}></i>
                 </div>
-                <p class="task-description" style=${getTaskStatus(curr)}>${curr.description}</p>
+                <input type="text" name="task-description" class="task-description" id="task-description-${index}" value="${curr.description}" style=${getTaskStatus(curr)}>
             </div>
             <div class="actions">
-                <i class="far fa-edit"></i>
+                <i class="far fa-edit edit-icon" id="edit-task-${index}"></i>
                 <i class="far fa-trash-alt delete-icon" id="delete-task-${index}"></i>
             </div>
         </div>
@@ -101,8 +101,37 @@ const displayTasksInHTML = arr => {
         whiteSpace.style.display = "none";
     }
 
+    editTask();
+    displayEditMode();
     deleteTask();
     markTaskAsCompleted();
+}
+
+const editTask = () => {
+    const taskInputs = document.querySelectorAll(".task-description");
+
+    for (let i = 0; i < taskInputs.length; i++) {
+        taskInputs[i].onchange = () => {
+            let tasks = getTasks();
+            const taskID = Number(taskInputs[i].id.slice(17));
+            tasks[taskID].description = taskInputs[i].value;
+            saveInLocalStorage(tasks, "tasks");
+            displayTasksInHTML(getTasks());
+        }
+    }
+}
+
+const displayEditMode = () => {
+    const editIcons = document.querySelectorAll(".edit-icon");
+    const taskInputs = document.querySelectorAll(".task-description");
+
+    for (let i = 0; i < editIcons.length; i++) {
+        editIcons[i].onclick = () => {
+            const taskID = Number(editIcons[i].id.slice(10));
+            taskInputs[taskID].classList.toggle("edit-mode");
+        }
+        
+    }
 }
 
 const deleteTask = () => {
@@ -123,12 +152,12 @@ const deleteTask = () => {
 }
 
 const markTaskAsCompleted = () => {
-    const items = document.querySelectorAll(".task-item");
+    const iconContainers = document.querySelectorAll(".icon-container");
 
-    for (let i = 0; i < items.length; i++) {
-        items[i].onclick = () => {
+    for (let i = 0; i < iconContainers.length; i++) {
+        iconContainers[i].onclick = () => {
             let tasks = getTasks();
-            const taskID = Number(items[i].id.slice(14));
+            const taskID = Number(iconContainers[i].id.slice(14));
 
             if (tasks[taskID].status === "uncompleted") {
                 tasks[taskID].status = "completed";
