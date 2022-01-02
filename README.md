@@ -11,7 +11,7 @@ To add a further degree of complexity to the project, I used local storage to sa
 ## Technologies
 
 - HTML5
-- CSS
+- CSS3
 - Javascript
 
 ## Design resources
