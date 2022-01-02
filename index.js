@@ -102,6 +102,7 @@ const displayTasksInHTML = arr => {
     }
 
     editTask();
+    displayEditMode();
     deleteTask();
     markTaskAsCompleted();
 }
@@ -117,6 +118,19 @@ const editTask = () => {
             saveInLocalStorage(tasks, "tasks");
             displayTasksInHTML(getTasks());
         }
+    }
+}
+
+const displayEditMode = () => {
+    const editIcons = document.querySelectorAll(".edit-icon");
+    const taskInputs = document.querySelectorAll(".task-description");
+
+    for (let i = 0; i < editIcons.length; i++) {
+        editIcons[i].onclick = () => {
+            const taskID = Number(editIcons[i].id.slice(10));
+            taskInputs[taskID].classList.toggle("edit-mode");
+        }
+        
     }
 }
 

@@ -118,6 +118,7 @@ main {
 
 .task-description {
   border: none;
+  border-bottom: 1px solid transparent;
   color: #0b132b;
   font-size: 16px;
   line-height: 1.6;
@@ -125,8 +126,14 @@ main {
 }
 
 .task-description:focus {
-  border: 1px solid #706c6166;
-  border-radius: 5px;
+  border-bottom: 1px solid #706c6166;
+  outline: none;
+}
+
+/* Style displayed when edit mode is on */
+
+.edit-mode {
+  border-bottom: 1px solid #706c6166;
   outline: none;
 }
 
