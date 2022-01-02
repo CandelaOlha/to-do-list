@@ -23,4 +23,4 @@ To add a further degree of complexity to the project, I used local storage to sa
 
 Have a look!
 
-[https://candelaolha.github.io/to-do-list/] (https://candelaolha.github.io/to-do-list/)
+[https://candelaolha.github.io/to-do-list/](https://candelaolha.github.io/to-do-list/)
