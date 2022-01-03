@@ -6,7 +6,7 @@ This is a small project I made to test my knowledge of Javascript and improve my
 
 It is a simple to-do list that allows the user to add, edit and delete tasks.
 
-To add a further degree of complexity to the project, I used local storage to save user tasks and their status.
+To add a further degree of complexity, I used local storage to save user tasks and their status.
 
 ## Technologies
 
