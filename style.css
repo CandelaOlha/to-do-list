@@ -104,10 +104,10 @@ main {
   border: 1px solid #4663f6;
   border-radius: 20px;
   display: flex;
-  height: 25px;
   justify-content: center;
   margin-right: 5px;
-  width: 25px;
+  min-height: 25px;
+  min-width: 25px;
 }
 
 .icon-container i {

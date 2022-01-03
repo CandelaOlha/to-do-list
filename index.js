@@ -85,7 +85,7 @@ const displayTasksInHTML = arr => {
                 <div class="icon-container" id="complete-task-${index}">
                     <i class="fas fa-check icon" style=${addCheckIcon(curr)}></i>
                 </div>
-                <input type="text" name="task-description" class="task-description" id="task-description-${index}" value="${curr.description}" style=${getTaskStatus(curr)}>
+                <p role="textbox" contenteditable class="task-description" id="task-description-${index}" style=${getTaskStatus(curr)}>${curr.description}</p>
             </div>
             <div class="actions">
                 <i class="far fa-edit edit-icon" id="edit-task-${index}"></i>
@@ -108,27 +108,26 @@ const displayTasksInHTML = arr => {
 }
 
 const editTask = () => {
-    const taskInputs = document.querySelectorAll(".task-description");
+    const taskDescriptions = document.querySelectorAll(".task-description");
 
-    for (let i = 0; i < taskInputs.length; i++) {
-        taskInputs[i].onchange = () => {
+    for (let i = 0; i < taskDescriptions.length; i++) {
+        taskDescriptions[i].oninput = () => {
             let tasks = getTasks();
-            const taskID = Number(taskInputs[i].id.slice(17));
-            tasks[taskID].description = taskInputs[i].value;
+            const taskID = Number(taskDescriptions[i].id.slice(17));
+            tasks[taskID].description = taskDescriptions[i].textContent;
             saveInLocalStorage(tasks, "tasks");
-            displayTasksInHTML(getTasks());
         }
     }
 }
 
 const displayEditMode = () => {
     const editIcons = document.querySelectorAll(".edit-icon");
-    const taskInputs = document.querySelectorAll(".task-description");
+    const taskDescriptions = document.querySelectorAll(".task-description");
 
     for (let i = 0; i < editIcons.length; i++) {
         editIcons[i].onclick = () => {
             const taskID = Number(editIcons[i].id.slice(10));
-            taskInputs[taskID].classList.toggle("edit-mode");
+            taskDescriptions[taskID].classList.toggle("edit-mode");
         }
     }
 }
