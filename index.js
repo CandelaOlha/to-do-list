@@ -100,6 +100,9 @@ const displayTasksInHTML = arr => {
     if (arr.length > 0) {
         whiteSpace.style.display = "none";
     }
+    else {
+        whiteSpace.style.display = "flex";
+    }
 
     editTask();
     displayEditMode();
