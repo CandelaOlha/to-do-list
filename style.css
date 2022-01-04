@@ -105,15 +105,14 @@ main {
 
 .task-item {
   align-items: center;
-  cursor: pointer;
   display: flex;
-  transition: 0.2s;
 }
 
 .icon-container {
   align-items: center;
   border: 1px solid #4663f6;
   border-radius: 20px;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   margin-right: 5px;
