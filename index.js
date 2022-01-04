@@ -111,6 +111,8 @@ const displayTasksInHTML = arr => {
     }
     else {
         whiteSpace.style.display = "flex";
+        taskInput.style.borderColor = "#706c61";
+        errorMessage.style.display = "none";
     }
 
     editTask();
