@@ -44,18 +44,27 @@ const getTasks = () => {
     }
 }
 
+const displayErrorMessage = () => {
+    taskInput.style.borderColor = "#ef767a";
+    errorMessage.style.display = "block";
+}
+
+const hideErrorMessage = () => {
+    taskInput.style.borderColor = "#706c61";
+    errorMessage.style.display = "none";
+}
+
 // Add task
 
 taskForm.onsubmit = e => {
     e.preventDefault();
 
     if (taskInput.value.length === 0) {
-        taskInput.style.borderColor = "#ef767a";
-        errorMessage.style.display = "block";
+        displayErrorMessage();
     }
     else {
-        taskInput.style.borderColor = "#706c61";
-        errorMessage.style.display = "none";
+        hideErrorMessage();
+
         const tasks = getTasks();
         const newTask = {
             description: taskInput.value, 
@@ -111,8 +120,7 @@ const displayTasksInHTML = arr => {
     }
     else {
         whiteSpace.style.display = "flex";
-        taskInput.style.borderColor = "#706c61";
-        errorMessage.style.display = "none";
+        hideErrorMessage();
     }
 
     editTask();
