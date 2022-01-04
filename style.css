@@ -37,7 +37,13 @@ main {
 
 .task-form {
   display: flex;
+  flex-direction: column;
   margin-bottom: 40px;
+}
+
+.form-controls {
+  display: flex;
+  margin-bottom: 10px;
 }
 
 .task-input {
@@ -64,6 +70,11 @@ main {
   justify-content: center;
   padding: 16px 32px;
   width: 30%;
+}
+
+.error-message {
+  color: #ef767a;
+  display: none;
 }
 
 .white-space {

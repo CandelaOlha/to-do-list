@@ -1,5 +1,6 @@
 const taskForm = document.querySelector(".task-form");
 const taskInput = document.querySelector(".task-input");
+const errorMessage = document.querySelector(".error-message");
 const tasksContainer = document.querySelector(".tasks-container");
 const whiteSpace = document.querySelector(".white-space");
 
@@ -48,18 +49,26 @@ const getTasks = () => {
 taskForm.onsubmit = e => {
     e.preventDefault();
 
-    const tasks = getTasks();
-    const newTask = {
-        description: taskInput.value, 
-        status: "uncompleted",
+    if (taskInput.value.length === 0) {
+        taskInput.style.borderColor = "#ef767a";
+        errorMessage.style.display = "block";
     }
-
-    tasks.push(newTask);
+    else {
+        taskInput.style.borderColor = "#706c61";
+        errorMessage.style.display = "none";
+        const tasks = getTasks();
+        const newTask = {
+            description: taskInput.value, 
+            status: "uncompleted",
+        }
     
-    taskInput.value = "";
-
-    saveInLocalStorage(tasks, "tasks");
-    displayTasksInHTML(tasks);
+        tasks.push(newTask);
+        
+        taskInput.value = "";
+    
+        saveInLocalStorage(tasks, "tasks");
+        displayTasksInHTML(tasks);
+    }
 }
 
 const addCheckIcon = task => {
