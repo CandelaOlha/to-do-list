@@ -130,13 +130,6 @@ main {
   outline: none;
 }
 
-/* Style displayed when edit mode is on */
-
-.edit-mode {
-  border-bottom: 1px solid #706c6166;
-  outline: none;
-}
-
 .actions {
   align-items: center;
   display: flex;

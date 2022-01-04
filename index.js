@@ -130,7 +130,7 @@ const displayEditMode = () => {
     for (let i = 0; i < editIcons.length; i++) {
         editIcons[i].onclick = () => {
             const taskID = Number(editIcons[i].id.slice(10));
-            taskDescriptions[taskID].classList.toggle("edit-mode");
+            taskDescriptions[taskID].focus();
         }
     }
 }
