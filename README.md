@@ -10,8 +10,8 @@ To add a further degree of complexity, I used local storage to save user tasks a
 
 ## Technologies
 
-- HTML5
-- CSS3
+- HTML
+- CSS
 - Javascript
 
 ## Design resources
